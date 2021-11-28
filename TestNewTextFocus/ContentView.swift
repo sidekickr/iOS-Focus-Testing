@@ -36,23 +36,34 @@ class FocusedEditor : ObservableObject {
 
 struct TextFieldWrapper : View {
     @ObservedObject var person: Person
+//    @Environment(\.focusedTextEditor) var focusedUUID
     @EnvironmentObject var focusedWrapper: FocusedEditor
     @FocusState private var focused: UUID?
     
     var body: some View {
-        TextField("Name",text: $person.name)
-            .focused($focused,equals: focusedWrapper.focusedTextEditor)
+        HStack {
+            TextField("Name",text: $person.name)
+//            .focused($focused,equals: focusedUUID)
+                .focused($focused,equals: focusedWrapper.focusedTextEditor)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     focused = person.id
                 }
             }
+            Button("Focus") {
+                focusedWrapper.focusedTextEditor = person.id
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    focused = person.id
+                }
+            }
+        }
     }
 }
 
 struct ContentView: View {
     @State var people = [Person]()
     @State var firstResponder = FocusedEditor(UUID())
+    @State var focusedUUID = UUID()
     
     var body: some View {
         List {
@@ -60,11 +71,14 @@ struct ContentView: View {
                 people.append(Person())
                 if let id = people.last?.id {
                     firstResponder.focusedTextEditor = id
+                    focusedUUID = id
                 }
             }
             ForEach(people) {person in
                 TextFieldWrapper(person: person)
-            }.environmentObject(firstResponder)
+            }
+//            .environment(\.focusedTextEditor, focusedUUID)
+            .environmentObject(firstResponder)
         }
         
     }
