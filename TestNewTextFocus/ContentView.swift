@@ -23,7 +23,7 @@ class Person: ObservableObject, Identifiable {
     
     @Published var name: String = ""
     let id = UUID()
-
+    
 }
 
 class FocusedEditor : ObservableObject {
@@ -34,28 +34,39 @@ class FocusedEditor : ObservableObject {
     }
 }
 
+struct FocusButton: View {
+    var id : UUID
+    var text: String
+    @EnvironmentObject var focusedWrapper: FocusedEditor
+    var body: some View {
+        Button(text) {
+            focusedWrapper.focusedTextEditor = id
+        }
+    }
+}
+
 struct TextFieldWrapper : View {
     @ObservedObject var person: Person
-//    @Environment(\.focusedTextEditor) var focusedUUID
+    //    @Environment(\.focusedTextEditor) var focusedUUID
     @EnvironmentObject var focusedWrapper: FocusedEditor
     @FocusState private var focused: UUID?
     
     var body: some View {
         HStack {
             TextField("Name",text: $person.name)
-//            .focused($focused,equals: focusedUUID)
+            //            .focused($focused,equals: focusedUUID)
                 .focused($focused,equals: focusedWrapper.focusedTextEditor)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    focused = person.id
+                .onReceive(focusedWrapper.$focusedTextEditor, perform: { _ in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        focused = person.id
+                    }
+                })
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        focused = person.id
+                    }
                 }
-            }
-            Button("Focus") {
-                focusedWrapper.focusedTextEditor = person.id
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    focused = person.id
-                }
-            }
+            FocusButton(id: person.id, text: "Focus")
         }
     }
 }
@@ -77,7 +88,7 @@ struct ContentView: View {
             ForEach(people) {person in
                 TextFieldWrapper(person: person)
             }
-//            .environment(\.focusedTextEditor, focusedUUID)
+            //            .environment(\.focusedTextEditor, focusedUUID)
             .environmentObject(firstResponder)
         }
         
