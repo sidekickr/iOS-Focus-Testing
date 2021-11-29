@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-struct FocusedTextEditorKey: EnvironmentKey {
-    static let defaultValue: UUID = UUID()
-}
-
-extension EnvironmentValues {
-    var focusedTextEditor : UUID {
-        get {self[FocusedTextEditorKey.self]}
-        set {self[FocusedTextEditorKey.self] = newValue}
-    }
-}
-
 class FocusedEditor : ObservableObject {
     
     @Published var focusedTextEditor: UUID?
@@ -39,14 +28,12 @@ struct FocusButtonEnvironmentObject: View {
 
 struct TextFieldWrapperEnvironmentObject : View {
     @ObservedObject var person: Person
-    //    @Environment(\.focusedTextEditor) var focusedUUID
     @EnvironmentObject var focusedWrapper: FocusedEditor
     @FocusState private var focused: UUID?
     
     var body: some View {
         HStack {
             TextField("Name",text: $person.name)
-            //            .focused($focused,equals: focusedUUID)
                 .focused($focused,equals: focusedWrapper.focusedTextEditor)
                 .onReceive(focusedWrapper.$focusedTextEditor, perform: { _ in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
@@ -80,14 +67,13 @@ struct ContentViewEnvironmentObject: View {
             ForEach(people) {person in
                 TextFieldWrapperEnvironmentObject(person: person)
             }
-            //            .environment(\.focusedTextEditor, focusedUUID)
             .environmentObject(firstResponder)
         }
         
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct ContentViewEnvironmentObject_Previews: PreviewProvider {
     static var previews: some View {
         ContentViewEnvironmentObject()
     }

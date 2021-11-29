@@ -11,7 +11,16 @@ import SwiftUI
 struct TestNewTextFocusApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentViewEnvironmentObject()
+            TabView {
+                ContentViewEnvironmentObject()
+                    .tabItem {
+                        Text("EnvObj")
+                    }
+                ContentViewEnvironment()
+                    .tabItem {
+                        Text("Env")
+                    }
+            }
         }
     }
 }
