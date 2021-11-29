@@ -18,14 +18,6 @@ extension EnvironmentValues {
     }
 }
 
-
-class Person: ObservableObject, Identifiable {
-    
-    @Published var name: String = ""
-    let id = UUID()
-    
-}
-
 class FocusedEditor : ObservableObject {
     
     @Published var focusedTextEditor: UUID?
@@ -34,7 +26,7 @@ class FocusedEditor : ObservableObject {
     }
 }
 
-struct FocusButton: View {
+struct FocusButtonEnvironmentObject: View {
     var id : UUID
     var text: String
     @EnvironmentObject var focusedWrapper: FocusedEditor
@@ -45,7 +37,7 @@ struct FocusButton: View {
     }
 }
 
-struct TextFieldWrapper : View {
+struct TextFieldWrapperEnvironmentObject : View {
     @ObservedObject var person: Person
     //    @Environment(\.focusedTextEditor) var focusedUUID
     @EnvironmentObject var focusedWrapper: FocusedEditor
@@ -66,12 +58,12 @@ struct TextFieldWrapper : View {
                         focused = person.id
                     }
                 }
-            FocusButton(id: person.id, text: "Focus")
+            FocusButtonEnvironmentObject(id: person.id, text: "Focus")
         }
     }
 }
 
-struct ContentView: View {
+struct ContentViewEnvironmentObject: View {
     @State var people = [Person]()
     @State var firstResponder = FocusedEditor(UUID())
     @State var focusedUUID = UUID()
@@ -86,7 +78,7 @@ struct ContentView: View {
                 }
             }
             ForEach(people) {person in
-                TextFieldWrapper(person: person)
+                TextFieldWrapperEnvironmentObject(person: person)
             }
             //            .environment(\.focusedTextEditor, focusedUUID)
             .environmentObject(firstResponder)
@@ -97,6 +89,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentViewEnvironmentObject()
     }
 }
