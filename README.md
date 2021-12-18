@@ -1,4 +1,4 @@
-This project was to test out differnt ways of enabling focus in a SwiftUI app. Specifically I wanted to figure out how to force focus on newly created TextFields
+This project was to test out different ways of enabling focus in a SwiftUI app. Specifically I wanted to figure out how to force focus on newly created TextFields
 so that when they were added focus was set on them. 
 
 The secondary objective was to enable a user to click a button next to an existing text field and return focus to that particular field. The key was that the object 
