@@ -13,6 +13,9 @@
 		C5F2BBAD2753FC3900250427 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5F2BBAC2753FC3900250427 /* Preview Assets.xcassets */; };
 		C5F2BBB827546E4500250427 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2BBB727546E4500250427 /* Person.swift */; };
 		C5F2BBBA27546E9D00250427 /* ContentViewEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2BBB927546E9D00250427 /* ContentViewEnvironment.swift */; };
+		C5F2BBBC2754716700250427 /* ContentViewVariablePassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2BBBB2754716700250427 /* ContentViewVariablePassing.swift */; };
+		C5F2BBBE2754748200250427 /* ContentViewBindingEnvironmentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2BBBD2754748200250427 /* ContentViewBindingEnvironmentObject.swift */; };
+		C5F2BBC027547A4000250427 /* ContentViewBindingEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F2BBBF27547A4000250427 /* ContentViewBindingEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		C5F2BBAC2753FC3900250427 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C5F2BBB727546E4500250427 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		C5F2BBB927546E9D00250427 /* ContentViewEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewEnvironment.swift; sourceTree = "<group>"; };
+		C5F2BBBB2754716700250427 /* ContentViewVariablePassing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewVariablePassing.swift; sourceTree = "<group>"; };
+		C5F2BBBD2754748200250427 /* ContentViewBindingEnvironmentObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewBindingEnvironmentObject.swift; sourceTree = "<group>"; };
+		C5F2BBBF27547A4000250427 /* ContentViewBindingEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewBindingEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 				C5F2BBA52753FC3700250427 /* TestNewTextFocusApp.swift */,
 				C5F2BBA72753FC3700250427 /* ContentViewEnvironmentObject.swift */,
 				C5F2BBB927546E9D00250427 /* ContentViewEnvironment.swift */,
+				C5F2BBBF27547A4000250427 /* ContentViewBindingEnvironment.swift */,
+				C5F2BBBB2754716700250427 /* ContentViewVariablePassing.swift */,
+				C5F2BBBD2754748200250427 /* ContentViewBindingEnvironmentObject.swift */,
 				C5F2BBB727546E4500250427 /* Person.swift */,
 				C5F2BBA92753FC3900250427 /* Assets.xcassets */,
 				C5F2BBAB2753FC3900250427 /* Preview Content */,
@@ -143,9 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5F2BBC027547A4000250427 /* ContentViewBindingEnvironment.swift in Sources */,
 				C5F2BBB827546E4500250427 /* Person.swift in Sources */,
+				C5F2BBBE2754748200250427 /* ContentViewBindingEnvironmentObject.swift in Sources */,
 				C5F2BBA82753FC3700250427 /* ContentViewEnvironmentObject.swift in Sources */,
 				C5F2BBBA27546E9D00250427 /* ContentViewEnvironment.swift in Sources */,
+				C5F2BBBC2754716700250427 /* ContentViewVariablePassing.swift in Sources */,
 				C5F2BBA62753FC3700250427 /* TestNewTextFocusApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,6 +20,18 @@ struct TestNewTextFocusApp: App {
                     .tabItem {
                         Text("Env")
                     }
+                ContentViewVariablePassing()
+                    .tabItem {
+                        Text("VarPass")
+                    }
+                ContentViewBindingEnvironmentObject()
+                    .tabItem {
+                        Text("BindEnvObj")
+                    }
+                ContentViewBindingEnvironment()
+                    .tabItem {
+                        Text("BindEnv")
+                    }
             }
         }
     }
